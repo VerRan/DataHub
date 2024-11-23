@@ -1,0 +1,24 @@
+{
+  "sources": {
+    "test_google_ads": {
+      "type": "google_ads",
+      "credentials": {
+        "customer_id": "test_customer",
+        "access_token": "test_token"
+      },
+      "settings": {
+        "api_version": "v9"
+      }
+    },
+    "test_facebook_ads": {
+      "type": "facebook_ads",
+      "credentials": {
+        "ad_account_id": "test_account",
+        "access_token": "test_token"
+      },
+      "settings": {
+        "api_version": "v12.0"
+      }
+    }
+  }
+}

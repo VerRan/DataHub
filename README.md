@@ -22,8 +22,12 @@ src/
 │   └── sources/
 │       ├── google_ads.py      # Google Ads数据源实现
 │       └── facebook_ads.py    # Facebook Ads数据源实现
-└── examples/
-    └── data_fetch_example.py  # 使用示例
+├── examples/
+│   └── data_fetch_example.py  # 使用示例
+└── tests/
+    ├── test_core_components.py    # 核心组件测试
+    ├── test_data_sources.py       # 数据源实现测试
+    └── test_config.json           # 测试配置文件
 ```
 
 ## 安装
@@ -109,11 +113,37 @@ if google_ads.connect():
     print(results)
 ```
 
+## 运行测试
+
+项目包含完整的单元测试套件，使用unittest和pytest框架。测试覆盖了核心组件和数据源实现。
+
+1. 运行所有测试：
+```bash
+python run_tests.py
+```
+
+2. 仅运行特定测试：
+```bash
+# 运行核心组件测试
+python -m unittest tests/test_core_components.py
+
+# 运行数据源测试
+python -m unittest tests/test_data_sources.py
+```
+
+3. 生成测试覆盖率报告：
+```bash
+pytest tests --cov=src/datahub --cov-report=html
+```
+
+覆盖率报告将生成在 `htmlcov` 目录中，可以在浏览器中打开 `htmlcov/index.html` 查看详细的覆盖率信息。
+
 ## 添加新的数据源
 
 1. 在 `src/datahub/sources` 目录下创建新的数据源实现类
 2. 继承 `DataSource` 基类并实现所需方法
 3. 使用 `DataSourceFactory.register()` 注册新的数据源
+4. 在 `tests/test_data_sources.py` 中添加相应的单元测试
 
 示例：
 ```python
@@ -154,9 +184,12 @@ DataSourceFactory.register('new_source', NewDataSource)
 
 1. Fork 项目
 2. 创建特性分支
-3. 提交更改
-4. 推送到分支
-5. 创建 Pull Request
+3. 编写测试用例
+4. 实现新功能
+5. 确保所有测试通过
+6. 提交更改
+7. 推送到分支
+8. 创建 Pull Request
 
 ## 许可证
 
