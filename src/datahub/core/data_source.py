@@ -5,6 +5,9 @@ from datetime import datetime
 class DataSource(ABC):
     """Abstract base class for all data sources"""
     
+    def __init__(self, config):
+        self.config = config
+    
     @abstractmethod
     def connect(self) -> bool:
         """Establish connection to the data source"""

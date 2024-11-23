@@ -28,7 +28,7 @@ class TestDataSourceConfig(unittest.TestCase):
 
 class TestTokenManager(unittest.TestCase):
     def setUp(self):
-        self.test_storage_path = 'test_tokens.json'
+        self.test_storage_path = os.path.join(os.path.dirname(__file__), 'test_tokens.json')
         self.token_manager = TokenManager(self.test_storage_path)
 
     def tearDown(self):
@@ -52,7 +52,7 @@ class TestTokenManager(unittest.TestCase):
 
 class TestConfigManager(unittest.TestCase):
     def setUp(self):
-        self.test_config_path = 'test_config.json'
+        self.test_config_path = os.path.join(os.path.dirname(__file__), 'test_config.json')
         self.config_manager = ConfigManager(self.test_config_path)
 
     def tearDown(self):
@@ -85,6 +85,9 @@ class TestConfigManager(unittest.TestCase):
         self.assertIsNone(self.config_manager.get_source_config(source_id))
 
 class MockDataSource(DataSource):
+    def __init__(self, config):
+        super().__init__(config)
+
     def connect(self) -> bool:
         return True
 
